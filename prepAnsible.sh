@@ -12,7 +12,7 @@ sudo dnf install python3 -y
 echo "Installing Python 3 PIP"
 sudo dnf install python3-pip -y
 echo "Installing Python 3 Virtual Env"
-sudo -H python3 -m pip install virtualenv
+python3 -m pip install virtualenv
 echo "Installing Python 3 Packaging"
 python3 -m pip install packaging
 echo "Installing Python 3 MS RestAzure"
@@ -21,11 +21,11 @@ echo "Installing python3-devel"
 sudo dnf install gcc python3-devel -y
 echo "Installing Ansible Azure Modules"
 curl -O https://raw.githubusercontent.com/ansible-collections/azure/dev/requirements-azure.txt
-sudo python3 -m pip install -r requirements-azure.txt
+python3 -m pip install -r requirements-azure.txt
 echo "Installing Ansible"
-sudo python3 -m pip install ansible[azure]
+python3 -m pip install ansible[azure]
 echo "Installing Azure CLI"
-sudo python3 -m pip install azure-cli
+python3 -m pip install azure-cli
 echo "Installing Ansible Azure Modules"
 ansible-galaxy collection install azure.azcollection
 echo "Config done"
