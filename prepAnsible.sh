@@ -13,10 +13,6 @@ echo "Installing Python 3 PIP"
 sudo dnf install python3-pip -y
 echo "Installing Python 3 Virtual Env"
 sudo python3 -m pip install virtualenv
-echo "Installing Python 3 Packaging"
-sudo python3 -m pip install packaging
-echo "Installing Python 3 MS RestAzure"
-sudo python3 -m pip install msrestazure
 echo "Installing python3-devel"
 sudo dnf install gcc python3-devel -y
 echo "Installing Ansible"
