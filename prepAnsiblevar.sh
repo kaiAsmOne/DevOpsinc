@@ -25,6 +25,7 @@ sudo python3 -m pip install -r requirements-azure.txt
 echo "Installing Ansible Azure Modules"
 sudo ansible-galaxy collection install azure.azcollection
 echo "Login with Azure CLI"
+echo "sudo -S -u sicraroot -i /bin/bash -l az login --service-principal -u $1 -p $2 --tenant $3" > /home/sicraroot/var.txt
 sudo -S -u sicraroot -i /bin/bash -l az login --service-principal -u $1 -p $2 --tenant $3
 echo "Config done"
 exit 0
