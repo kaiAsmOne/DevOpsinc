@@ -1,23 +1,25 @@
 #!/bin/sh
-echo "Start Agent Installation"
+echo "Start Agent Installation" > status.txt
+
 cd /home/$4
 mkdir agent
 cd agent
 AGENTRELEASE="$(curl -s https://api.github.com/repos/Microsoft/azure-pipelines-agent/releases/latest | grep -oP '"tag_name": "v\K(.*)(?=")')"
 AGENTURL="https://vstsagentpackage.azureedge.net/agent/${AGENTRELEASE}/vsts-agent-linux-x64-${AGENTRELEASE}.tar.gz"
-echo "Release "${AGENTRELEASE}" appears to be latest" 
-echo "Downloading..."
+echo "Release "${AGENTRELEASE}" appears to be latest" >> status.txt
+echo "Downloading..." >> status.txt
 wget -O agent.tar.gz ${AGENTURL} 
 tar zxvf agent.tar.gz
 chmod -R 777 .
-echo "extracted"
+echo "extracted" >> status.txt
 sudo ./bin/installdependencies.sh
-echo "dependencies installed"
+echo "dependencies installed" >> status.txt
+echo "./config.sh --unattended --url '$1' --auth pat --token '$2' --pool '$3' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" >> status.txt
 ./config.sh --unattended --url '$1' --auth pat --token '$2' --pool '$3' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace
-echo "configuration done"
+echo "configuration done"  >> status.txt
 sudo ./svc.sh install
-echo "service installed"
+echo "service installed" >> status.txt
 sudo ./svc.sh start
-echo "service started"
-echo "config done"
+echo "service started" >> status.txt
+echo "config done" >> status.txt
 exit 0

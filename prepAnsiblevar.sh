@@ -31,6 +31,6 @@ echo "Start Azure DevOps Agent Installation" >> /home/$4/installstatus.txt
 cd /home/$4
 wget install_agent.sh https://raw.githubusercontent.com/kaiAsmOne/DevOpsinc/main/install_agent.sh
 chmod +x ./install_agent.sh
-/bin/su -c "/home/$4/install_agent.sh '$5' '$6' '$7' '$4'"
+/bin/su -c "/home/$4/install_agent.sh '$5' '$6' '$7' '$4'" - $4
 echo "config done" >> /home/$4/installstatus.txt
 exit 0
