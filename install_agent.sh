@@ -15,7 +15,7 @@ echo "extracted" >> status.txt
 sudo ./bin/installdependencies.sh
 echo "dependencies installed" >> status.txt
 echo "./config.sh --unattended --url '$1' --auth pat --token '$2' --pool '$3' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" >> status.txt
-./config.sh --unattended --url '$1' --auth pat --token '$2' --pool '$3' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace
+/home/$4/agent/config.sh --unattended --url '$1' --auth pat --token '$2' --pool '$3' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace
 echo "configuration done"  >> status.txt
 sudo ./svc.sh install
 echo "service installed" >> status.txt
