@@ -1,6 +1,4 @@
-#!/bin/sh
-echo $@
-echo "start"
+echo "Start Agent Installation"
 cd /home/sicraroot
 mkdir agent
 cd agent
