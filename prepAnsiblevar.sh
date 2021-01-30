@@ -28,45 +28,9 @@ echo "Login with Azure CLI" >> /home/$4/installstatus.txt
 sudo /bin/su -c "/usr/local/bin/az login --service-principal -u $1 -p $2 --tenant $3" - $4
 echo "DevOps Tools Installation Completed" >> /home/$4/installstatus.txt
 echo "Start Azure DevOps Agent Installation" >> /home/$4/installstatus.txt
-#cd /home/$4
-#mkdir agent
-#cd agent
-#AGENTRELEASE="$(curl -s https://api.github.com/repos/Microsoft/azure-pipelines-agent/releases/latest | grep -oP '"tag_name": "v\K(.*)(?=")')"
-#AGENTURL="https://vstsagentpackage.azureedge.net/agent/${AGENTRELEASE}/vsts-agent-linux-x64-${AGENTRELEASE}.tar.gz"
-#echo "Release "${AGENTRELEASE}" appears to be latest" >> /home/$4/installstatus.txt
-#echo "Downloading..." >> /home/$4/installstatus.txt
-#wget -O agent.tar.gz ${AGENTURL} 
-#tar zxvf agent.tar.gz
-#chmod -R 777 .
-#echo "extracted" >> /home/$4/installstatus.txt
-#sudo /bin/su -c "/home/$4/agent/bin/installdependencies.sh"
-#echo "dependencies installed" >> /home/$4/installstatus.txt
-#echo "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" >> /home/$4/installstatus.txt
-#sudo /bin/su -c "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" - $4
-#echo "configuration done" >> /home/$4/installstatus.txt
-#sudo /bin/su -c "/home/$4/agent/svc.sh install" - $4
-#echo "service installed" >> /home/$4/installstatus.txt
-#sudo /bin/su -c "/home/$4/agent/svc.sh start" - $4
-#echo "service started" >> /home/$4/installstatus.txt
 cd /home/$4
-mkdir agent
-cd agent
-AGENTRELEASE="$(curl -s https://api.github.com/repos/Microsoft/azure-pipelines-agent/releases/latest | grep -oP '"tag_name": "v\K(.*)(?=")')"
-AGENTURL="https://vstsagentpackage.azureedge.net/agent/${AGENTRELEASE}/vsts-agent-linux-x64-${AGENTRELEASE}.tar.gz"
-echo "Release "${AGENTRELEASE}" appears to be latest" >> /home/$4/installstatus.txt
-echo "Downloading..." >> /home/$4/installstatus.txt
-wget -O agent.tar.gz ${AGENTURL} 
-tar zxvf agent.tar.gz
-chmod -R 777 .
-echo "extracted" >> /home/$4/installstatus.txt
-sudo -u $4 -i /home/$4/agent/bin/installdependencies.sh
-echo "dependencies installed" >> /home/$4/installstatus.txt
-echo "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" >> /home/$4/installstatus.txt
-sudo -u $4 -i /home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace >> /home/$4/installstatus.txt
-echo "configuration done" >> /home/$4/installstatus.txt
-sudo -u $4 -i /home/$4/agent/svc.sh install
-echo "service installed" >> /home/$4/installstatus.txt
-sudo -u $4 -i /home/$4/agent/svc.sh start
-echo "service started" >> /home/$4/installstatus.txt
+curl https://raw.githubusercontent.com/kaiAsmOne/DevOpsinc/main/install_agent.sh
+chmod +x install_agent.sh
+/bin/su -c "/home/$4/install_agent.sh '$5' '$6' '$7' '$4'"
 echo "config done" >> /home/$4/installstatus.txt
 exit 0

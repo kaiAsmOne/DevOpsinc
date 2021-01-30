@@ -1,5 +1,6 @@
+#!/bin/sh
 echo "Start Agent Installation"
-cd /home/sicraroot
+cd /home/$4
 mkdir agent
 cd agent
 AGENTRELEASE="$(curl -s https://api.github.com/repos/Microsoft/azure-pipelines-agent/releases/latest | grep -oP '"tag_name": "v\K(.*)(?=")')"
@@ -12,7 +13,7 @@ chmod -R 777 .
 echo "extracted"
 sudo ./bin/installdependencies.sh
 echo "dependencies installed"
-./config.sh --unattended --url "https://dev.azure.com/sicra/" --auth pat --token $1 --pool "DevOpsMGMAnsible" --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace
+./config.sh --unattended --url '$1' --auth pat --token '$2' --pool '$3' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace
 echo "configuration done"
 sudo ./svc.sh install
 echo "service installed"
