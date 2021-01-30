@@ -44,9 +44,9 @@ echo "dependencies installed" >> /home/$4/installstatus.txt
 echo "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" >> /home/$4/installstatus.txt
 /bin/su -c "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" - $4
 echo "configuration done" >> /home/$4/installstatus.txt
-sudo /bin/su -c "/home/$4/agent/svc.sh install" - $4
+sudo -H -u $4 /bin/su -c "/home/$4/agent/svc.sh install" - $4
 echo "service installed" >> /home/$4/installstatus.txt
-sudo /bin/su -c "/home/$4/agent/svc.sh start" - $4
+sudo -H -u $4 /bin/su -c "/home/$4/agent/svc.sh start" - $4
 echo "service started" >> /home/$4/installstatus.txt
 echo "config done" >> /home/$4/installstatus.txt
 exit 0
