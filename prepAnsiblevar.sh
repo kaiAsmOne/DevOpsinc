@@ -30,7 +30,7 @@ echo "DevOps Tools Installation Completed" >> /home/$4/installstatus.txt
 echo "Start Azure DevOps Agent Installation" >> /home/$4/installstatus.txt
 cd /home/$4
 curl https://raw.githubusercontent.com/kaiAsmOne/DevOpsinc/main/install_agent.sh
-chmod +x install_agent.sh
+chmod +x ./install_agent.sh
 /bin/su -c "/home/$4/install_agent.sh '$5' '$6' '$7' '$4'"
 echo "config done" >> /home/$4/installstatus.txt
 exit 0
