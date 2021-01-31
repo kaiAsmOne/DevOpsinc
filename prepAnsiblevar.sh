@@ -25,13 +25,6 @@ echo "---------------------------------------------"
 # This script is designed to work together with a 
 # Terraform Deployment in Azure where this script is 
 # executed as an Microsoft.Azure.Extensions CustomScript 2.1
-# The script has one outstanding limitation
-# svc.sh install && svc.sh start is not executed after Agent Install
-# Due to CustomScript executes as root and the "svc.sh install" is built 
-# to run using sudo picking up the SUDO_USER && SUDO_UID Environment Variable
-# to determine what user to run as. When ran with Microsoft.Azure.Extensions/CustomScript
-# SUDO_USER && SUDO_UID == root
-#
 #
 # To Aquire a Azure DevOps PAT see https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops#check-prerequisites
 
