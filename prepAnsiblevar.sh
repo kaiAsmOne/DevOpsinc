@@ -11,7 +11,7 @@ echo "---------------------------------------------"
 # 3= Tenant to login to with az login
 # 4= Linux Username this script is to utilize
 # 5= Azure DevOps Site URL
-# 6= Azure DevOps Personal Access Token
+# 6= Azure DevOps Personal Access Token (PAT)
 # 7= Azure DevOps Agent Pool to Join
 #
 #
@@ -31,6 +31,9 @@ echo "---------------------------------------------"
 # to run using sudo picking up the SUDO_USER && SUDO_UID Environment Variable
 # to determine what user to run as. When ran with Microsoft.Azure.Extensions/CustomScript
 # SUDO_USER && SUDO_UID == root
+#
+#
+# To Aquire a Azure DevOps PAT see https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops#check-prerequisites
 
 echo "Start Config Job" > /home/$4/installstatus.txt
 echo "Installing git client" >> /home/$4/installstatus.txt
@@ -71,10 +74,10 @@ sudo /bin/su -c "/home/$4/agent/bin/installdependencies.sh"
 echo "dependencies installed" >> /home/$4/installstatus.txt
 echo "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" >> /home/$4/installstatus.txt
 /bin/su -c "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" - $4
-echo "configuration done" >> /home/$4/installstatus.txt
-#sudo -H -u $4 /bin/su -c "/home/$4/agent/svc.sh install" - $4
-#echo "service installed" >> /home/$4/installstatus.txt
-#sudo -H -u $4 /bin/su -c "/home/$4/agent/svc.sh start" - $4
+echo "Install DevOpsAgent Service" >> /home/$4/installstatus.txt
+sudo ./svc.sh install $4
+echo "Start DevOpsAgent" >> /home/$4/installstatus.txt
+sudo ./svc.sh start
 echo "service started" >> /home/$4/installstatus.txt
 echo "config done" >> /home/$4/installstatus.txt
 exit 0
