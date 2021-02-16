@@ -50,6 +50,8 @@ echo "Installing Ansible Azure Modules" >> /home/$4/installstatus.txt
 sudo ansible-galaxy collection install azure.azcollection
 echo "Login with Azure CLI" >> /home/$4/installstatus.txt
 sudo /bin/su -c "/usr/local/bin/az login --service-principal -u $1 -p $2 --tenant $3" - $4
+echo "Installing Google Cloud Requirements" >> /home/$4/installstatus.txt
+sudo python3 -m pip install google-auth
 echo "DevOps Tools Installation Completed" >> /home/$4/installstatus.txt
 echo "Start Azure DevOps Agent Installation" >> /home/$4/installstatus.txt
 cd /home/$4
