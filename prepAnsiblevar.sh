@@ -80,6 +80,7 @@ echo "Create gcp folder" >> /home/$4/installstatus.txt
 sudo python3 -m pip install azure-cli
 cd /home/$4
 mkdir gcp
+chown $4 gcp
 cd gcp
 /bin/su - $4 -c 'az keyvault secret show --name "$8" --vault-name "$9" --query "value">> gcpcredz.json'
 echo "Set GCP Variables" >> /home/$4/installstatus.txt
