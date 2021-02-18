@@ -74,5 +74,13 @@ sudo ./svc.sh install $4
 echo "Start DevOpsAgent" >> /home/$4/installstatus.txt
 sudo ./svc.sh start
 echo "service started" >> /home/$4/installstatus.txt
+echo "Create gcp folder" >> /home/$4/installstatus.txt
+cd /home/$4
+mkdir gcp
+cd gcp
+az keyvault secret show --name "devops-gcp-creds" --vault-name "sicra-kv-dep-assets" --query "value">> gcpcredz.json
+echo "Set GCP Variables" >> /home/$4/installstatus.txt
+/bin/su - $4 -c 'export GCP_AUTH_KIND=serviceaccount'
+/bin/su - $4 -c 'export GCP_SERVICE_ACCOUNT_FILE=/home/$4/gcp/gcpcredz.json'
 echo "config done" >> /home/$4/installstatus.txt
 exit 0
