@@ -13,7 +13,7 @@ echo "---------------------------------------------"
 # 5= Azure DevOps Site URL
 # 6= Azure DevOps Personal Access Token (PAT)
 # 7= Azure DevOps Agent Pool to Join
-#
+# 8= 
 #
 # This Script will install all required software for a working 
 # Ansible Environment to Execute Ansible Scripts in Azure
@@ -78,7 +78,7 @@ echo "Create gcp folder" >> /home/$4/installstatus.txt
 cd /home/$4
 mkdir gcp
 cd gcp
-az keyvault secret show --name "devops-gcp-creds" --vault-name "sicra-kv-dep-assets" --query "value">> gcpcredz.json
+az keyvault secret show --name "$8" --vault-name "$9" --query "value">> gcpcredz.json
 echo "Set GCP Variables" >> /home/$4/installstatus.txt
 /bin/su - $4 -c 'export GCP_AUTH_KIND=serviceaccount'
 /bin/su - $4 -c 'export GCP_SERVICE_ACCOUNT_FILE=/home/$4/gcp/gcpcredz.json'
