@@ -13,7 +13,9 @@ echo "---------------------------------------------"
 # 5= Azure DevOps Site URL
 # 6= Azure DevOps Personal Access Token (PAT)
 # 7= Azure DevOps Agent Pool to Join
-# 8= 
+# 8= Azure Vault Secret Name that contains the Google Cloud Service Account JSON
+# 9 = Name of azure vault where 8 exists
+
 #
 # This Script will install all required software for a working 
 # Ansible Environment to Execute Ansible Scripts in Azure
