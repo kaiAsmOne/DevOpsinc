@@ -77,6 +77,7 @@ echo "Start DevOpsAgent" >> /home/$4/installstatus.txt
 sudo ./svc.sh start
 echo "service started" >> /home/$4/installstatus.txt
 echo "Create gcp folder" >> /home/$4/installstatus.txt
+sudo python3 -m pip install azure-cli
 cd /home/$4
 mkdir gcp
 cd gcp
