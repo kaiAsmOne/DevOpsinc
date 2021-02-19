@@ -87,8 +87,8 @@ echo "Create gcp JSON" >> /home/$4/installstatus.txt
 echo "Set GCP Variables" >> /home/$4/installstatus.txt
 #/bin/su - $4 -c "export GCP_AUTH_KIND=serviceaccount"
 #/bin/su - $4 -c "export GCP_SERVICE_ACCOUNT_FILE=/home/$4/gcp/gcpcredz.json"
-echo 'export GCP_SERVICE_ACCOUNT_FILE=/home/$4/gcp/gcpcredz.json' >> /home/$4/.bashrc
-echo 'export GCP_AUTH_KIND=serviceaccount' >> /home/$4/.bashrc
+echo "export GCP_SERVICE_ACCOUNT_FILE=/home/'$4'/gcp/gcpcredz.json" >> /home/$4/.bashrc
+echo "export GCP_AUTH_KIND=serviceaccount" >> /home/$4/.bashrc
 
 echo "config done" >> /home/$4/installstatus.txt
 exit 0
