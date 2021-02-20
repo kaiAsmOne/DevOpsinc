@@ -1,6 +1,7 @@
 packaging
 requests[security]
 xmltodict
+azure-cli
 azure-cli-core
 azure-cli-nspkg
 azure-common
