@@ -44,10 +44,9 @@ sudo dnf install gcc python3-devel -y
 echo "Installing Ansible" >> /home/$4/installstatus.txt
 sudo python3 -m pip install ansible
 echo "Installing Azure CLI" >> /home/$4/installstatus.txt
-sudo python3 -m pip install azure-cli
+sudo python3 -m pip install azure-cli==2.11.1
 echo "Installing Ansible Azure Modules" >> /home/$4/installstatus.txt
-curl -O https://github.com/Azure/azure_preview_modules/blob/master/files/requirements-azure.txt
-#sudo curl -O https://raw.githubusercontent.com/ansible-collections/azure/dev/requirements-azure.txt
+sudo curl -O https://raw.githubusercontent.com/ansible-collections/azure/dev/requirements-azure.txt
 sudo python3 -m pip install -r requirements-azure.txt
 echo "Installing Ansible Azure Modules" >> /home/$4/installstatus.txt
 sudo ansible-galaxy collection install azure.azcollection
@@ -78,7 +77,6 @@ echo "Start DevOpsAgent" >> /home/$4/installstatus.txt
 sudo ./svc.sh start
 echo "service started" >> /home/$4/installstatus.txt
 echo "Create gcp folder" >> /home/$4/installstatus.txt
-sudo python3 -m pip install azure-cli
 cd /home/$4
 mkdir gcp
 chown -R $4:$4 gcp/
