@@ -38,23 +38,28 @@ sudo dnf install python3 -y
 echo "Installing Python 3 PIP" >> /home/$4/installstatus.txt
 sudo dnf install python3-pip -y
 echo "Installing Python 3 Virtual Env" >> /home/$4/installstatus.txt
+# Mangla rettigheter allerede på pakka under her
 sudo python3 -m pip install virtualenv
 echo "Installing python3-devel" >> /home/$4/installstatus.txt
 sudo dnf install gcc python3-devel -y
 echo "Installing Ansible" >> /home/$4/installstatus.txt
-sudo python3 -m pip install ansible
+/bin/su - sicraroot -c  "python3 -m pip install --user ansible"
 echo "Installing Azure CLI" >> /home/$4/installstatus.txt
-sudo python3 -m pip install azure-cli
+/bin/su - sicraroot -c  "python3 -m pip install --user azure-cli"
 echo "Installing Ansible Azure Modules" >> /home/$4/installstatus.txt
-curl -O https://github.com/Azure/azure_preview_modules/blob/master/files/requirements-azure.txt
+curl -O https://raw.githubusercontent.com/Azure/azure_preview_modules/master/files/requirements-azure.txt
 #sudo curl -O https://raw.githubusercontent.com/ansible-collections/azure/dev/requirements-azure.txt
-sudo python3 -m pip install -r requirements-azure.txt
+#sudo python3 -m pip install -r requirements-azure.txt
+/bin/su - sicraroot -c  "python3 -m pip install --user -r requirements-azure.txt"
+
 echo "Installing Ansible Azure Modules" >> /home/$4/installstatus.txt
-sudo ansible-galaxy collection install azure.azcollection
+# Kommando under må kjøres som aktuell bruker
+/bin/su - sicraroot -c  "ansible-galaxy collection install azure.azcollection"
 echo "Login with Azure CLI" >> /home/$4/installstatus.txt
 sudo /bin/su -c "/usr/local/bin/az login --service-principal -u $1 -p $2 --tenant $3" - $4
 echo "Installing Google Cloud Requirements" >> /home/$4/installstatus.txt
-sudo python3 -m pip install google-auth
+
+/bin/su - sicraroot -c  "python3 -m pip install --user google-auth"
 echo "DevOps Tools Installation Completed" >> /home/$4/installstatus.txt
 echo "Start Azure DevOps Agent Installation" >> /home/$4/installstatus.txt
 cd /home/$4
@@ -68,7 +73,7 @@ wget -O agent.tar.gz ${AGENTURL}
 tar zxvf agent.tar.gz
 chmod -R 777 .
 echo "extracted" >> /home/$4/installstatus.txt
-sudo /bin/su -c "/home/$4/agent/bin/installdependencies.sh"
+sudo /home/sicraroot/agent/bin/installdependencies.sh
 echo "dependencies installed" >> /home/$4/installstatus.txt
 echo "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" >> /home/$4/installstatus.txt
 /bin/su -c "/home/$4/agent/config.sh --unattended --url '$5' --auth pat --token '$6' --pool '$7' --agent $HOSTNAME --acceptTeeEula --work ./_work --runAsService --acceptTeeEula --replace" - $4
@@ -78,7 +83,7 @@ echo "Start DevOpsAgent" >> /home/$4/installstatus.txt
 sudo ./svc.sh start
 echo "service started" >> /home/$4/installstatus.txt
 echo "Create gcp folder" >> /home/$4/installstatus.txt
-sudo python3 -m pip install azure-cli
+#sudo python3 -m pip install azure-cli
 cd /home/$4
 mkdir gcp
 chown -R $4:$4 gcp/

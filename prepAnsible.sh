@@ -50,6 +50,7 @@ curl -O https://github.com/Azure/azure_preview_modules/blob/master/files/require
 #sudo curl -O https://raw.githubusercontent.com/ansible-collections/azure/dev/requirements-azure.txt
 sudo python3 -m pip install -r requirements-azure.txt
 echo "Installing Ansible Azure Modules" >> /home/$4/installstatus.txt
+# Kommando under må kjøres som aktuell bruker
 sudo ansible-galaxy collection install azure.azcollection
 echo "Login with Azure CLI" >> /home/$4/installstatus.txt
 sudo /bin/su -c "/usr/local/bin/az login --service-principal -u $1 -p $2 --tenant $3" - $4
