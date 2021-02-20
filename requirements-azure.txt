@@ -1,7 +1,6 @@
 packaging
 requests[security]
 xmltodict
-azure-cli
 azure-cli-core
 azure-cli-nspkg
 azure-common
@@ -27,9 +26,7 @@ azure-mgmt-storage
 azure-mgmt-trafficmanager
 azure-mgmt-web
 azure-nspkg
-azure-storage-queue
-azure-storage-file
-azure-storage-blob
+azure-storage
 msrest
 msrestazure
 azure-keyvault
