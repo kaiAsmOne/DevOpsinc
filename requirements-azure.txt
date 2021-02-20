@@ -26,7 +26,9 @@ azure-mgmt-storage
 azure-mgmt-trafficmanager
 azure-mgmt-web
 azure-nspkg
-azure-storage
+azure-storage-queue
+azure-storage-file
+azure-storage-blob
 msrest
 msrestazure
 azure-keyvault
