@@ -84,10 +84,8 @@ mkdir gcp
 chown -R $4:$4 gcp/
 cd gcp
 echo "Create gcp JSON" >> /home/$4/installstatus.txt
-/bin/su - $4 -c "az keyvault secret show --name '$8' --vault-name '$9' --query 'value' > /home/$4/gcp/gcpcredz.json"
+/bin/su - $4 -c "az keyvault secret download --name 'devops-gcp-creds' --vault-name 'sicra-kv-dep-assets' -f /home/$4/gcp/gcpcredz.json"
 echo "Set GCP Variables" >> /home/$4/installstatus.txt
-#/bin/su - $4 -c "export GCP_AUTH_KIND=serviceaccount"
-#/bin/su - $4 -c "export GCP_SERVICE_ACCOUNT_FILE=/home/$4/gcp/gcpcredz.json"
 echo "export GCP_SERVICE_ACCOUNT_FILE=/home/'$4'/gcp/gcpcredz.json" >> /home/$4/.bashrc
 echo "export GCP_AUTH_KIND=serviceaccount" >> /home/$4/.bashrc
 
