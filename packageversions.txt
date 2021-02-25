@@ -1,6 +1,6 @@
-sudo /bin/su - sicraroot -c 'az keyvault secret show --name "$8" --vault-name "$9" --query "value" > /home/sicraroot/gcp/gcpcredz.json'
-sudo /bin/su - sicraroot -c 'az keyvault secret show --name "devops-gcp-creds" --vault-name "sicra-kv-dep-assets" --query "value" > /home/sicraroot/gcp/gcpcredz.json'
-
-
 git = 2.27.0-1.el8    
 python3=3.6.8-2.module_el8.3.0+562+e162826a 
+python3-pip=9.0.3-18.el8 
+virtualenv=tualenv-20.4.2-py2.py3-none
+gcc =8.3.1-5.1.el8  
+python3-devel= 3.6.8-2.module_el8.3.0+562+e162826a  
