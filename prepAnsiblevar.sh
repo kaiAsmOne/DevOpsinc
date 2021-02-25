@@ -76,6 +76,8 @@ sudo ./svc.sh install $4
 echo "Start DevOpsAgent" >> /home/$4/installstatus.txt
 sudo ./svc.sh start
 echo "service started" >> /home/$4/installstatus.txt
+echo "Install Azure CLI That works with both Ansible and az cli commands. Double install due to bug" >> /home/$4/installstatus.txt
+sudo python3 -m pip install azure-cli==2.11.1
 echo "Create gcp folder" >> /home/$4/installstatus.txt
 cd /home/$4
 mkdir gcp
