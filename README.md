@@ -23,3 +23,5 @@ The script will authenticate with azure cli using service principle name.
 After successful installation the script will also install Azure DevOps Pipeline Agent and authenticate with an Azure DevOps site using a Personal Access Token.
 
 To Aquire a Azure DevOps PAT see https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devopscheck-prerequisites
+
+Written by Kai Thorsrud
