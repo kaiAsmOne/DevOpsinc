@@ -62,5 +62,6 @@ echo "Create gcp JSON" >> /home/$4/installstatus.txt
 echo "Set GCP Variables" >> /home/$4/installstatus.txt
 echo "export GCP_SERVICE_ACCOUNT_FILE=/home/'$4'/gcp/gcpcredz.json" >> /home/$4/.bashrc
 echo "export GCP_AUTH_KIND=serviceaccount" >> /home/$4/.bashrc
+echo "export ANSIBLE_HOST_KEY_CHECKING=False" >> /home/$4/.bashrc
 echo "config done" >> /home/$4/installstatus.txt
 exit 0
