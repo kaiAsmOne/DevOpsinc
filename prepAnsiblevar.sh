@@ -38,4 +38,12 @@ cd gcp
 echo "export GCP_SERVICE_ACCOUNT_FILE=/home/'$4'/gcp/gcpcredz.json" >> /home/$4/.bashrc
 echo "export GCP_AUTH_KIND=serviceaccount" >> /home/$4/.bashrc
 echo "export ANSIBLE_HOST_KEY_CHECKING=False" >> /home/$4/.bashrc
+sudo dnf makecache
+sudo dnf install epel-release -y
+sudo dnf makecache
+sudo dnf install sshpass -y
+mkdir /etc/ansible/
+cd /etc/ansible/
+sudo curl -O https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
+sed -i "s/#host_key_checking = True/host_key_checking = False/" /etc/ansible/ansible.cfg
 exit 0
