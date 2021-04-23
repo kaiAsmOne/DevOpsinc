@@ -46,4 +46,10 @@ mkdir /etc/ansible/
 cd /etc/ansible/
 sudo curl -O https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
 sed -i "s/#host_key_checking = True/host_key_checking = False/" /etc/ansible/ansible.cfg
+cd /home/$4
+/bin/su - $4 -c "git clone https://github.com/citrix/citrix-adc-ansible-modules.git"
+cd citrix-adc-ansible-modules
+sudo python3 -m pip install paramiko
+sudo python3 -m pip install /home/$4/citrix-adc-ansible-modules/deps/nitro-python-1.0_kamet.tar.gz
+
 exit 0
