@@ -51,8 +51,8 @@ cd /home/$4
 cd citrix-adc-ansible-modules
 sudo python3 -m pip install paramiko
 sudo python3 -m pip install /home/$4/citrix-adc-ansible-modules/deps/nitro-python-1.0_kamet.tar.gz
-sudo ansible-galaxy collection install git+https://github.com/citrix/citrix-adc-ansible-modules.git#/ansible-collections/adc
-sudo ansible-galaxy collection install git+https://github.com/citrix/citrix-adc-ansible-modules.git#/ansible-collections/adm
+ansible-galaxy collection install git+https://github.com/citrix/citrix-adc-ansible-modules.git#/ansible-collections/adc
+ansible-galaxy collection install git+https://github.com/citrix/citrix-adc-ansible-modules.git#/ansible-collections/adm
 
 
 exit 0
